@@ -1,0 +1,18 @@
+"use client";
+
+import { CheckCircle2, LoaderCircle, Send } from "lucide-react";
+import { useState, type FormEvent } from "react";
+
+export function ContactForm() {
+  const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault(); setState("sending"); setMessage("");
+    const form = event.currentTarget; const payload = Object.fromEntries(new FormData(form));
+    try { const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); const body = await response.json() as { message?: string }; if (!response.ok) throw new Error(body.message ?? "送信できませんでした"); setState("success"); setMessage(body.message ?? "送信しました"); form.reset(); } catch (error) { setState("error"); setMessage(error instanceof Error ? error.message : "送信できませんでした"); }
+  }
+  if (state === "success") return <div className="rounded-3xl bg-green-50 p-8 text-center" role="status"><CheckCircle2 className="mx-auto h-12 w-12 text-green-700"/><h2 className="mt-4 text-2xl font-black">お問い合わせを受け付けました</h2><p className="mt-3 leading-7 text-bark/70">{message}</p><button className="button-secondary mt-6" onClick={() => setState("idle")}>続けて送る</button></div>;
+  return <form onSubmit={submit} className="space-y-6" noValidate><div className="grid gap-6 sm:grid-cols-2"><Field label="お名前" name="name" required autoComplete="name" maxLength={80}/><Field label="メールアドレス" name="email" type="email" required autoComplete="email" maxLength={254}/></div><Field label="所属（任意）" name="affiliation" autoComplete="organization" maxLength={120}/><div><label className="form-label" htmlFor="kind">ご用件 <span className="text-red-700">必須</span></label><select className="form-input" id="kind" name="kind" required defaultValue=""><option value="" disabled>選択してください</option><option value="join">入部・見学</option><option value="outreach">出前授業・地域交流</option><option value="research">研究・取材</option><option value="other">その他</option></select></div><div><label className="form-label" htmlFor="message">お問い合わせ内容 <span className="text-red-700">必須</span></label><textarea className="form-input min-h-44 resize-y" id="message" name="message" required minLength={10} maxLength={2000} placeholder="ご希望の内容や時期などをお書きください。"/></div><div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><label htmlFor="website">ウェブサイト</label><input id="website" name="website" type="text" tabIndex={-1} autoComplete="off"/></div><label className="flex items-start gap-3 text-sm leading-7"><input type="checkbox" name="consent" value="true" required className="mt-1 h-5 w-5 accent-honey"/><span>入力内容を問い合わせ対応のために取り扱うことに同意します。 <span className="text-red-700">必須</span></span></label>{message && <p className="rounded-xl bg-red-50 p-4 text-sm font-bold text-red-800" role="alert">{message}</p>}<button className="button-primary w-full sm:w-auto" type="submit" disabled={state === "sending"}>{state === "sending" ? <><LoaderCircle className="animate-spin"/> 送信中…</> : <>送信する <Send size={19}/></>}</button></form>;
+}
+
+function Field({ label, name, type = "text", required = false, ...props }: { label: string; name: string; type?: string; required?: boolean; autoComplete?: string; maxLength?: number }) { return <div><label className="form-label" htmlFor={name}>{label} {required && <span className="text-red-700">必須</span>}</label><input className="form-input" id={name} name={name} type={type} required={required} {...props}/></div>; }
