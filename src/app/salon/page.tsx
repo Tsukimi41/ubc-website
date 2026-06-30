@@ -53,7 +53,7 @@ export default async function SalonPage() {
             <Benefit icon={<Tag/>} title="ショップ特典" text="会員向け割引コードを自動発行。"/>
             <Benefit icon={<Heart/>} title="活動を応援" text="継続的な飼育と研究の土台に。"/>
           </div>
-          <PaperCard className="p-7 sm:p-9">
+          <PaperCard variant="static" className="p-7 sm:p-9">
             {user ? (
               <>
                 <div className="flex items-center gap-3"><KeyRound className="text-leaf"/><div><p className="text-sm text-bark/60">ログイン中</p><p className="font-bold">{user.email}</p></div></div>

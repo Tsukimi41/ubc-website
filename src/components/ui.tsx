@@ -8,8 +8,8 @@ export function PageHero({ eyebrow, title, description, children }: { eyebrow: s
   return <section className="relative overflow-hidden border-b border-bark/10 bg-[radial-gradient(circle_at_80%_10%,rgba(255,216,90,.55),transparent_25%),linear-gradient(135deg,#FFFDF1,#FFF1DB)]"><div className="page-shell relative py-16 sm:py-24"><div className="max-w-3xl"><p className="eyebrow">{eyebrow}</p><h1 className="display-title mt-3">{title}</h1><p className="mt-6 max-w-2xl text-lg leading-9 text-bark/75">{description}</p>{children}</div><div className="absolute -right-8 top-8 select-none text-[9rem] opacity-10" aria-hidden="true">🐝</div></div></section>;
 }
 
-export function PaperCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <article className={`paper-card ${className}`}>{children}</article>;
+export function PaperCard({ children, className = "", variant = "paper" }: { children: ReactNode; className?: string; variant?: "paper" | "static" }) {
+  return <article className={`paper-card ${variant === "static" ? "paper-card-static" : ""} ${className}`}>{children}</article>;
 }
 
 export function StatusPill({ status }: { status: "live" | "cached" | "demo" }) {
