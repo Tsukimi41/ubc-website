@@ -13,7 +13,10 @@ const config: Config = {
         pollen: "#FFD85A",
       },
       fontFamily: {
-        maru: ["var(--font-zen-maru)", "sans-serif"],
+        body: ["var(--font-noto-sans)", "var(--font-shippori-antique)", "sans-serif"],
+        hand: ["var(--font-klee-one)", "var(--font-shippori-antique)", "sans-serif"],
+        mincho: ["var(--font-shippori-mincho)", "serif"],
+        sans: ["var(--font-noto-sans)", "sans-serif"],
       },
       boxShadow: {
         paper: "0 12px 35px rgba(86, 47, 0, .10), 0 2px 7px rgba(86, 47, 0, .08)",

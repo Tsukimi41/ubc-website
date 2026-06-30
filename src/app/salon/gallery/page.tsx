@@ -34,11 +34,13 @@ export default async function GalleryPage() {
       <div className="page-shell py-16">
         <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
           {updates.map((item, index) => (
-            <article key={item.id} className="paper-card mb-6 break-inside-avoid">
-              {item.imageUrl || index === 0 ? <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl"><Image src={item.imageUrl ?? "/images/rooftop-apiary-hero.png"} alt="会員向け活動写真" fill className="object-cover" sizes="(min-width:1024px) 30vw, 90vw"/></div> : <div className="mb-5 grid aspect-[4/3] place-items-center rounded-2xl bg-peach/30 text-7xl">🐝</div>}
-              <time className="text-xs font-bold text-leaf" dateTime={item.date}>{formatJapaneseDate(item.date)}</time>
-              <h2 className="mt-2 text-lg font-black">{item.title}</h2>
-              <p className="mt-2 text-sm leading-7 text-bark/70">{item.body}</p>
+            <article key={item.id} className="paper-card update-card-image group mb-7 min-h-[420px] break-inside-avoid">
+              {item.imageUrl || index === 0 ? <Image src={item.imageUrl ?? "/images/rooftop-apiary-hero.png"} alt="会員向け活動写真" fill className="object-cover transition duration-700 group-hover:scale-105" sizes="(min-width:1024px) 30vw, 90vw"/> : <div className="absolute inset-0 grid place-items-center bg-peach/30 text-8xl" aria-hidden="true">🐝</div>}
+              <div className="update-card-data">
+                <time className="update-card-meta text-xs font-bold" dateTime={item.date}>{formatJapaneseDate(item.date)}</time>
+                <h2 className="mt-2 text-xl font-black">{item.title}</h2>
+                <p className="update-card-copy mt-2 line-clamp-5 text-sm leading-7">{item.body}</p>
+              </div>
             </article>
           ))}
         </div>
