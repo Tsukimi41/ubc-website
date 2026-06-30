@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import { Brain, Eye, Flower2, HeartPulse, ScanFace, Sigma } from "lucide-react";
+import { PageHero, PaperCard, SectionHeading } from "@/components/ui";
+import { WaggleDiagram } from "@/components/waggle-diagram";
+
+export const metadata: Metadata = { title: "ハチのひみつ", description: "顔の識別、8の字ダンス、数、感情、紫外線視覚、受粉。ミツバチの驚くべき知性を研究とともに紹介します。" };
+
+const sources = [
+  ["顔画像の識別", "https://pubmed.ncbi.nlm.nih.gov/16326952/"],
+  ["8の字ダンス", "https://pmc.ncbi.nlm.nih.gov/articles/PMC6835826/"],
+  ["ゼロの順序づけ", "https://pubmed.ncbi.nlm.nih.gov/29880690/"],
+  ["加減算の学習", "https://pmc.ncbi.nlm.nih.gov/articles/PMC6365119/"],
+  ["悲観的な認知バイアス", "https://pmc.ncbi.nlm.nih.gov/articles/3158593/"],
+  ["受粉と食料", "https://www.fao.org/pollination/"],
+] as const;
+
+export default function AmazingBeesPage() {
+  return <><PageHero eyebrow="Amazing bees" title="その小さな脳は、世界をどう見ている？" description="ミツバチの脳は、ごま粒ほど。それでも、学び、伝え、状況に合わせて判断します。6つの窓から、その知的な世界をのぞいてみましょう。"><div className="mt-8 flex flex-wrap gap-2">{["認知", "通信", "数学", "感情", "視覚", "生態系"].map((item) => <a key={item} href={`#${item}`} className="rounded-full border border-bark/20 bg-cream px-4 py-2 text-sm font-bold hover:bg-peach">{item}</a>)}</div></PageHero>
+    <div className="page-shell space-y-28 py-20">
+      <SecretSection id="認知" number="01" icon={<ScanFace/>} title="人の「顔」も、見分けられる" lead="これは、人間を個人として理解しているという意味ではありません。けれど、複雑な顔画像を全体の配置パターンとして学び、似た画像から選び分けることができます。"><div className="grid gap-5 sm:grid-cols-3">{["目や鼻の配置", "輪郭とコントラスト", "全体のまとまり"].map((label, i) => <PaperCard key={label} className="text-center"><div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-peach text-4xl" aria-hidden="true">{["👀","〰️","🙂"][i]}</div><p className="mt-4 font-bold">{label}</p></PaperCard>)}</div><p className="mt-6 rounded-2xl bg-[#f3efda] p-5 text-sm leading-7"><b>研究のポイント：</b>訓練された個体は、標準的な顔画像課題でターゲットを選びました。画像を上下逆さにすると成績が落ちたことから、パーツの配置をまとめて処理している可能性が示されています。</p></SecretSection>
+      <SecretSection id="通信" number="02" icon={<Brain/>} title="「8の字」で、地図を話す" lead="採餌から戻った働き蜂は、巣板の上でダンスをします。尻振り走行の角度は太陽に対する方向、時間はおおよその距離。良い花ほど、ダンスは活発になります。"><WaggleDiagram /></SecretSection>
+      <SecretSection id="数学" number="03" icon={<Sigma/>} title="「ない」を数の列に置ける" lead="実験では、ミツバチが空集合（何もない刺激）を正の数量より小さい側に位置づけました。色を規則の合図にして「1を足す・引く」を学んだ研究もあります。"><div className="grid gap-5 sm:grid-cols-5">{["0","1","2","3","4"].map((n) => <div key={n} className="grid aspect-square place-items-center rounded-3xl border-2 border-bark/10 bg-white text-4xl font-black shadow-paper">{n}</div>)}</div><div className="mt-6 border-l-4 border-honey bg-peach/30 p-5 text-sm leading-7"><b>「8まで数える」について：</b>現在の一次研究から堅く言えるのは、順番に通る目印を4つ程度まで数えること、少数の数量を区別すること、0や1〜5の範囲で数的規則を学ぶことです。「8」は8の字ダンスと混同されやすく、8まで逐次的に数えるとする確立した根拠は確認できません。</div></SecretSection>
+      <SecretSection id="感情" number="04" icon={<HeartPulse/>} title="揺さぶられると、判断が悲観的に" lead="捕食者の攻撃を模した振動ストレスを受けたミツバチは、曖昧な匂いを「悪い結果の合図」と判断しやすくなりました。神経伝達物質にも変化が見られています。"><PaperCard className="grid gap-6 sm:grid-cols-2"><div className="rounded-2xl bg-leaf p-6 text-cream"><p className="text-sm font-bold text-pollen">落ち着いた状態</p><p className="mt-3 text-2xl font-black">「いい匂いかも？」</p><p className="mt-3 text-sm leading-7 text-cream/75">曖昧な刺激にも口吻を伸ばす傾向</p></div><div className="rounded-2xl bg-bark p-6 text-cream"><p className="text-sm font-bold text-peach">ストレス後</p><p className="mt-3 text-2xl font-black">「危ない合図かも」</p><p className="mt-3 text-sm leading-7 text-cream/75">悪い結果に近い刺激への反応を控える傾向</p></div></PaperCard><p className="mt-5 text-sm leading-7 text-bark/65">これは人間と同じ主観的な「感情」を証明するものではありません。ただし、状態によって判断が変わることは、飼育時の福祉を考える大切な手がかりです。</p></SecretSection>
+      <SecretSection id="視覚" number="05" icon={<Eye/>} title="花は、紫外線で道しるべを描く" lead="ミツバチの色覚は紫外線・青・緑の受容体を基盤にしています。私たちには均一に見える花びらにも、蜜の場所へ導く模様が浮かびます。空の偏光パターンは、太陽が隠れたときのコンパスです。"><div className="grid overflow-hidden rounded-[2rem] border border-bark/10 md:grid-cols-2"><div className="grid min-h-72 place-items-center bg-gradient-to-br from-sky-200 to-green-100 p-8 text-center"><div><div className="text-8xl" aria-hidden="true">🌼</div><p className="mt-4 font-bold">人に見える花</p></div></div><div className="grid min-h-72 place-items-center bg-[radial-gradient(circle,#101010_0_12%,#d5ff1f_13%_28%,#7548d8_29%_52%,#171026_53%)] p-8 text-center"><p className="rounded-full bg-black/65 px-4 py-2 font-bold text-white">紫外線の蜜標（イメージ）</p></div></div></SecretSection>
+      <SecretSection id="生態系" number="06" icon={<Flower2/>} title="食卓と野原を、花から花へつなぐ" lead="花粉を運ぶのはミツバチだけではありません。野生のハナバチ、チョウ、ハエ、鳥など多様な送粉者が働き、世界の主要作物のおよそ4分の3は、その恩恵を少なくとも一部受けています。"><div className="grid gap-5 sm:grid-cols-3"><PaperCard><p className="text-4xl font-black text-[#9D4712]">3/4</p><p className="mt-2 font-bold">主要作物が送粉者に少なくとも一部依存</p></PaperCard><PaperCard><p className="text-4xl" aria-hidden="true">🌸→🐝→🍎</p><p className="mt-2 font-bold">花粉が運ばれ、実や種になる</p></PaperCard><PaperCard><p className="text-4xl" aria-hidden="true">🌍</p><p className="mt-2 font-bold">生態系と人の暮らしをつなぐ</p></PaperCard></div><p className="mt-5 text-sm leading-7 text-bark/65">都市養蜂では、在来の送粉者との餌資源競合にも配慮が必要です。巣箱を増やすだけでなく、地域の花と多様な昆虫を一緒に守る視点を大切にします。</p></SecretSection>
+      <section className="rounded-[2rem] bg-[#f4efd9] p-7 sm:p-10" aria-labelledby="sources"><SectionHeading eyebrow="Read more" title="もっと確かめたい人へ"/><h3 id="sources" className="sr-only">参考資料</h3><ul className="mt-6 grid gap-3 sm:grid-cols-2">{sources.map(([label, href]) => <li key={href}><a className="flex min-h-12 items-center justify-between rounded-xl bg-cream px-4 py-3 font-bold underline-offset-4 hover:underline" href={href} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true">↗</span></a></li>)}</ul><p className="mt-5 text-xs leading-6 text-bark/60">研究結果は、特定の実験条件で訓練された個体の行動に基づきます。「理解」「感情」などの言葉は人間と同じ心的体験を意味するとは限りません。</p></section>
+    </div></>;
+}
+
+function SecretSection({ id, number, icon, title, lead, children }: { id: string; number: string; icon: React.ReactNode; title: string; lead: string; children: React.ReactNode }) {
+  return <section id={id} className="scroll-mt-28"><div className="grid gap-9 lg:grid-cols-[.75fr_1.25fr]"><div><div className="flex items-center gap-3 text-leaf"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-peach [&>svg]:h-6 [&>svg]:w-6">{icon}</span><span className="text-sm font-black tracking-[.2em]">SECRET {number}</span></div><h2 className="section-title mt-5">{title}</h2><p className="mt-5 text-lg leading-9 text-bark/75">{lead}</p></div><div>{children}</div></div></section>;
+}
