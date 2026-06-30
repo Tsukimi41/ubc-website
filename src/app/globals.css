@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { background: #fffdf1; color: #562f00; min-height: 100vh; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 80; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E"); }
+::selection { background: #ffce99; color: #562f00; }
+:focus-visible { outline: 4px solid #ff9644; outline-offset: 3px; }
+
+@layer components {
+  .page-shell { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
+  .display-title { @apply text-4xl font-black leading-[1.25] tracking-[-.03em] sm:text-5xl lg:text-6xl; }
+  .section-title { @apply text-3xl font-black leading-snug tracking-[-.02em] sm:text-4xl; }
+  .eyebrow { @apply text-sm font-black uppercase tracking-[.18em] text-leaf; }
+  .paper-card { @apply relative overflow-hidden rounded-[1.75rem] border border-bark/10 bg-[#fffef8] p-6 shadow-paper transition duration-300; background-image: radial-gradient(rgba(86,47,0,.035) .7px, transparent .7px); background-size: 6px 6px; }
+  .paper-card:hover { @apply -translate-y-1 border-honey/40; }
+  .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-honey px-6 py-3 font-black text-bark shadow-[0_6px_0_#b95f20] transition hover:-translate-y-0.5 hover:bg-[#ff8429] active:translate-y-1 active:shadow-none; }
+  .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-bark/25 bg-cream px-6 py-3 font-black text-bark transition hover:border-honey hover:bg-peach/40; }
+  .icon-button { @apply grid h-12 w-12 place-items-center rounded-full border border-bark/20 bg-cream text-bark hover:bg-peach/50; }
+  .form-label { @apply mb-2 block text-sm font-bold text-bark; }
+  .form-input { @apply min-h-12 w-full rounded-xl border-2 border-bark/20 bg-white px-4 py-3 text-base text-bark placeholder:text-bark/45 hover:border-bark/40 focus:border-honey focus:outline-none focus:ring-4 focus:ring-peach/50; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
