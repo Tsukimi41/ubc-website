@@ -9,13 +9,83 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-i
 ::selection { background: #ffce99; color: #562f00; }
 :focus-visible { outline: 4px solid #ff9644; outline-offset: 3px; }
 
+.bee-flight-cross {
+  left: -3.5rem;
+  top: 31%;
+  animation: bee-flight-cross 14s linear infinite;
+}
+.bee-flight-corner {
+  right: -3.5rem;
+  top: -2.5rem;
+  animation: bee-flight-corner 15s ease-in-out -5s infinite;
+}
+
+@keyframes bee-flight-cross {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-8deg); }
+  3% { opacity: 1; }
+  18% { transform: translate3d(24vw, -1.2rem, 0) rotate(5deg); }
+  36% { transform: translate3d(51vw, .8rem, 0) rotate(-4deg); }
+  56% { opacity: 1; transform: translate3d(78vw, -1rem, 0) rotate(6deg); }
+  65% { opacity: 0; transform: translate3d(calc(100vw + 7rem), .3rem, 0) rotate(-3deg); }
+  100% { opacity: 0; transform: translate3d(calc(100vw + 7rem), .3rem, 0); }
+}
+
+@keyframes bee-flight-corner {
+  0%, 12% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-30deg); }
+  16% { opacity: 1; }
+  30% { transform: translate3d(-14vw, 15vh, 0) rotate(-45deg); }
+  46% { transform: translate3d(-25vw, 29vh, 0) rotate(-20deg); }
+  58% { transform: translate3d(-18vw, 41vh, 0) rotate(18deg); }
+  72% { opacity: 1; transform: translate3d(1rem, 58vh, 0) rotate(35deg); }
+  76%, 100% { opacity: 0; transform: translate3d(6rem, 64vh, 0) rotate(35deg); }
+}
+
 @layer components {
   .page-shell { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
   .display-title { @apply text-4xl font-black leading-[1.25] tracking-[-.03em] sm:text-5xl lg:text-6xl; }
   .section-title { @apply text-3xl font-black leading-snug tracking-[-.02em] sm:text-4xl; }
   .eyebrow { @apply text-sm font-black uppercase tracking-[.18em] text-leaf; }
-  .paper-card { @apply relative overflow-hidden rounded-[1.75rem] border border-bark/10 bg-[#fffef8] p-6 shadow-paper transition duration-300; background-image: radial-gradient(rgba(86,47,0,.035) .7px, transparent .7px); background-size: 6px 6px; }
-  .paper-card:hover { @apply -translate-y-1 border-honey/40; }
+  .paper-card {
+    @apply relative overflow-hidden border-2 border-bark/70 bg-[#fffef8] p-6 transition duration-300;
+    border-radius: 18px 255px 22px 225px / 225px 18px 255px 22px;
+    background-image: radial-gradient(rgba(86,47,0,.045) .7px, transparent .7px);
+    background-size: 6px 6px;
+    box-shadow: 7px 8px 0 rgba(255, 150, 68, .34), 0 18px 30px rgba(86, 47, 0, .10);
+  }
+  .paper-card::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(86, 47, 0, .18);
+    border-radius: 14px 245px 18px 215px / 215px 14px 245px 18px;
+    pointer-events: none;
+  }
+  .paper-card:hover {
+    transform: translate(-2px, -3px) rotate(-.15deg);
+    box-shadow: 10px 12px 0 rgba(255, 150, 68, .42), 0 22px 34px rgba(86, 47, 0, .13);
+  }
+  .update-card-image {
+    @apply isolate min-h-[420px] p-0 text-cream;
+    background-color: #562f00;
+  }
+  .update-card-image::before {
+    content: "";
+    @apply absolute inset-0 z-10;
+    background: linear-gradient(to top, rgba(44, 25, 4, .94) 0%, rgba(44, 25, 4, .38) 58%, rgba(44, 25, 4, .04) 100%);
+  }
+  .update-card-image .update-card-data {
+    @apply absolute inset-x-0 bottom-0 z-20 p-6 sm:p-7;
+    transition: transform .48s cubic-bezier(.2, .8, .2, 1);
+  }
+  .update-card-image .update-card-meta { @apply text-pollen; }
+  .update-card-image .update-card-copy { @apply text-cream/80; }
+  .update-card-image .update-card-link { @apply text-pollen; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .update-card-image .update-card-data { transform: translateY(calc(100% - 7.6rem)); }
+    .update-card-image:hover .update-card-data,
+    .update-card-image:focus-within .update-card-data { transform: translateY(0); }
+  }
   .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-honey px-6 py-3 font-black text-bark shadow-[0_6px_0_#b95f20] transition hover:-translate-y-0.5 hover:bg-[#ff8429] active:translate-y-1 active:shadow-none; }
   .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-bark/25 bg-cream px-6 py-3 font-black text-bark transition hover:border-honey hover:bg-peach/40; }
   .icon-button { @apply grid h-12 w-12 place-items-center rounded-full border border-bark/20 bg-cream text-bark hover:bg-peach/50; }
