@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const stats = [
   { value: 2023, suffix: "年", label: "活動スタート" },
-  { value: 4, suffix: "基", label: "見守る巣箱" },
+  { value: 16, suffix: "基", label: "見守る巣箱" },
   { value: 80000, suffix: "+", label: "推定ミツバチ" },
   { value: 24, suffix: "時間", label: "センサー観測" },
 ];
