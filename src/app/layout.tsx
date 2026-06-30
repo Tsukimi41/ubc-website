@@ -13,8 +13,14 @@ const shipporiMincho = Shippori_Mincho({ weight: ["500", "700", "800"], subsets:
 const notoSans = Noto_Sans({ weight: ["400", "500", "600", "700", "800"], subsets: ["latin"], display: "swap", variable: "--font-noto-sans" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url), title: { default: `${siteConfig.name} | 小さな羽の研究室`, template: `%s | ${siteConfig.name}` },
+  metadataBase: new URL(siteConfig.url),
+  title: { default: `${siteConfig.name} | 小さな羽の研究室`, template: `%s | ${siteConfig.name}` },
   description: siteConfig.description, applicationName: siteConfig.name,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: { type: "website", locale: "ja_JP", title: siteConfig.name, description: siteConfig.description, images: [{ url: "/images/rooftop-apiary-hero.png", width: 1680, height: 941 }] },
   robots: { index: true, follow: true },
 };
