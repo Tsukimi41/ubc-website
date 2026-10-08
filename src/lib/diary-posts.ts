@@ -24,4 +24,13 @@ export const september24Diary = {
   photos: { src: string; alt: string; caption: string }[];
 };
 
-export const localDiaryEntries: DiaryEntry[] = [september24Diary];
+export const september14Diary = {
+  id: "2026-09-14-hornet-defense",
+  title: "9月14日、大型スズメバチの襲撃 — ミツバチを守るために",
+  excerpt: "大学の養蜂場で、多くのミツバチが犠牲になっています。大型スズメバチの脅威とミツバチの防衛行動、巣門の両脇・正面の隙間を見直す対策案を詳しく解説します。",
+  publishedAt: "2026-09-14",
+  category: "養蜂日誌",
+  url: "/diary/2026-09-14-hornet-defense",
+} satisfies DiaryEntry;
+
+export const localDiaryEntries: DiaryEntry[] = [september24Diary, september14Diary];
