@@ -150,7 +150,11 @@ async function fetchNotion(): Promise<DiaryEntry[]> {
 
 export const getLatestUpdates = unstable_cache(() => fetchTumblr("news"), ["latest-updates"], { revalidate: 300 });
 export const getGalleryUpdates = unstable_cache(() => fetchTumblr("gallery"), ["gallery-updates"], { revalidate: 300 });
-export const getDiaryEntries = unstable_cache(async () => {
-  const entries = await fetchNotion();
+const getNotionDiaryEntries = unstable_cache(fetchNotion, ["notion-diary-entries"], { revalidate: 900 });
+
+export async function getDiaryEntries() {
+  const entries = await getNotionDiaryEntries();
+  // Keep bundled articles outside the persistent CMS cache so each deployment
+  // immediately includes its new posts in both diary listings.
   return [...localDiaryEntries, ...entries].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
-}, ["diary-entries"], { revalidate: 900 });
+}
