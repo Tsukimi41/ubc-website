@@ -1,5 +1,25 @@
 import type { DiaryEntry } from "@/lib/types";
 
+export const october2Diary = {
+  id: "2026-10-02-net-hole",
+  title: "10月2日、スズメバチの捕獲とネットに見つかった穴",
+  excerpt: "午後にオオスズメバチ3匹、コガタスズメバチ3匹を捕獲。張ったばかりのネットに穴が見つかり、補修と原因について考えました。養蜂場の様子を写真6枚で記録します。",
+  publishedAt: "2026-10-02",
+  category: "養蜂日誌",
+  imageUrl: "/images/diary/2026-10-02/photo-5.jpg",
+  url: "/diary/2026-10-02-net-hole",
+  photos: [
+    { src: "/images/diary/2026-10-02/photo-1.jpg", width: 1280, height: 721, alt: "金網の捕獲器を付けた巣箱と、足元に残る多数のミツバチ", caption: "写真1：巣箱前の捕獲器と足元の様子。" },
+    { src: "/images/diary/2026-10-02/photo-2.jpg", width: 721, height: 1280, alt: "巣箱の正面にある金網の捕獲器と、その下の地面に集まったミツバチ", caption: "写真2：正面から見た捕獲器と巣箱の足元。" },
+    { src: "/images/diary/2026-10-02/photo-3.jpg", width: 1280, height: 721, alt: "緑のネットに囲まれた養蜂場で、捕獲器を付けた巣箱が並ぶ様子", caption: "写真3：巣箱と捕獲器を横から見た様子。" },
+    { src: "/images/diary/2026-10-02/photo-4.jpg", width: 1280, height: 721, alt: "左右にブロックを置いた巣箱と、その前の金網の捕獲器", caption: "写真4：ブロックを置いた巣箱の正面。" },
+    { src: "/images/diary/2026-10-02/photo-5.jpg", width: 1280, height: 721, alt: "緑のネットに囲まれた養蜂場に巣箱が並び、中央の巣箱に白いネットが掛かる全景", caption: "写真5：ネットに囲まれた養蜂場の全景。" },
+    { src: "/images/diary/2026-10-02/photo-6.jpg", width: 1280, height: 721, alt: "中央の巣箱を覆う白いネットと、それを押さえる赤いレンガ", caption: "写真6：白いネットを掛けた巣箱。端はレンガで押さえています。" },
+  ],
+} satisfies DiaryEntry & {
+  photos: { src: string; width: number; height: number; alt: string; caption: string }[];
+};
+
 export const september24Diary = {
   id: "2026-09-24-apiary",
   title: "9月24日の養蜂場 — 巣箱まわりの作業風景",
@@ -65,4 +85,4 @@ export const september18Diary = {
   url: "/diary/2026-09-18-hornet-traps",
 } satisfies DiaryEntry;
 
-export const localDiaryEntries: DiaryEntry[] = [september24Diary, september18Diary, september16Diary, september14Diary];
+export const localDiaryEntries: DiaryEntry[] = [october2Diary, september24Diary, september18Diary, september16Diary, september14Diary];
