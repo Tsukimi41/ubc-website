@@ -1,6 +1,7 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
 import { fallbackDiary, fallbackUpdates } from "@/lib/fallback-data";
+import { localDiaryEntries } from "@/lib/diary-posts";
 import { parseHostAllowList, safeExternalUrl } from "@/lib/safe-url";
 import { readBodyWithLimit } from "@/lib/security";
 import type { DiaryEntry, Update } from "@/lib/types";
@@ -149,4 +150,7 @@ async function fetchNotion(): Promise<DiaryEntry[]> {
 
 export const getLatestUpdates = unstable_cache(() => fetchTumblr("news"), ["latest-updates"], { revalidate: 300 });
 export const getGalleryUpdates = unstable_cache(() => fetchTumblr("gallery"), ["gallery-updates"], { revalidate: 300 });
-export const getDiaryEntries = unstable_cache(fetchNotion, ["diary-entries"], { revalidate: 900 });
+export const getDiaryEntries = unstable_cache(async () => {
+  const entries = await fetchNotion();
+  return [...localDiaryEntries, ...entries].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+}, ["diary-entries"], { revalidate: 900 });

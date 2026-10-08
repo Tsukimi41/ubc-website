@@ -109,6 +109,7 @@ ENABLE_SALON=true
 
 ## 運用
 
+- サイト内の写真日誌: `src/lib/diary-posts.ts` に記事情報、`src/app/diary/<記事ID>/page.tsx` に本文ページ、`public/images/diary/` に写真を追加します。Notion連携の有無にかかわらず、養蜂日誌と活動・研究の一覧に公開日の新しい順で表示されます。
 - 長文・研究記録: Notionでページを作り、ステータスを「公開」にします。
 - 速報: Tumblrへ `#news` を付けて投稿します。
 - 会員写真: Tumblrへ `#gallery` を付けて投稿します。
