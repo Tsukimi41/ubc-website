@@ -55,4 +55,14 @@ export const september16Diary = {
   photos: { src: string; width: number; height: number; alt: string; caption: string }[];
 };
 
-export const localDiaryEntries: DiaryEntry[] = [september24Diary, september16Diary, september14Diary];
+export const september18Diary = {
+  id: "2026-09-18-hornet-traps",
+  title: "9月18日、スズメバチの飛来が続く — 防水性の粘着シートを追加",
+  excerpt: "午前にキイロスズメバチ5匹、午後にオオスズメバチ2匹を捕獲しました。防水性の粘着シートを追加し、巣門まわりの様子を写真に残しました。",
+  publishedAt: "2026-09-18",
+  category: "養蜂日誌",
+  imageUrl: "/images/diary/2026-09-18/photo-1.jpg",
+  url: "/diary/2026-09-18-hornet-traps",
+} satisfies DiaryEntry;
+
+export const localDiaryEntries: DiaryEntry[] = [september24Diary, september18Diary, september16Diary, september14Diary];
