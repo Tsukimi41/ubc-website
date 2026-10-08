@@ -1,5 +1,22 @@
 import type { DiaryEntry } from "@/lib/types";
 
+export const october8Diary = {
+  id: "2026-10-08-hive-inspection",
+  title: "10月8日、弱群の点検と粘着シートの記録",
+  excerpt: "今日はスズメバチの飛来は見られませんでしたが、粘着シートには多数かかり、ネズミもかかっていました。弱群の産卵はほとんどなく、中央の群には害虫が多数。全ての巣箱をバーナーで焼いた日の記録です。",
+  publishedAt: "2026-10-08",
+  category: "養蜂日誌",
+  imageUrl: "/images/diary/2026-10-08/photo-1.jpg",
+  url: "/diary/2026-10-08-hive-inspection",
+  photos: [
+    { src: "/images/diary/2026-10-08/photo-1.jpg", width: 1280, height: 721, alt: "養蜂場に並ぶ三つの木製巣箱と周囲の巣箱", caption: "写真1：この日点検した養蜂場の巣箱。" },
+    { src: "/images/diary/2026-10-08/photo-2.jpg", width: 1280, height: 960, alt: "巣箱のそばの粘着シートにかかったネズミと複数のスズメバチ", caption: "写真2：粘着シートにはスズメバチのほか、ネズミもかかっていました。" },
+    { src: "/images/diary/2026-10-08/photo-3.jpg", width: 960, height: 1280, alt: "粘着シートに多数かかったスズメバチ", caption: "写真3：粘着シートに残っていた多数のスズメバチ。" },
+  ],
+} satisfies DiaryEntry & {
+  photos: { src: string; width: number; height: number; alt: string; caption: string }[];
+};
+
 export const october2Diary = {
   id: "2026-10-02-net-hole",
   title: "10月2日、スズメバチの捕獲とネットに見つかった穴",
@@ -85,4 +102,4 @@ export const september18Diary = {
   url: "/diary/2026-09-18-hornet-traps",
 } satisfies DiaryEntry;
 
-export const localDiaryEntries: DiaryEntry[] = [october2Diary, september24Diary, september18Diary, september16Diary, september14Diary];
+export const localDiaryEntries: DiaryEntry[] = [october8Diary, october2Diary, september24Diary, september18Diary, september16Diary, september14Diary];
